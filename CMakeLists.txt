@@ -19,7 +19,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
-add_executable(PW_2_Geometry main.cc ${sources} ${headers})
+add_executable(PW_2_Geometry main.cc ${sources} ${headers} src/Random.cpp include/Random.h)
 target_link_libraries(PW_2_Geometry ${Geant4_LIBRARIES})
 
 

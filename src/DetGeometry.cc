@@ -10,9 +10,10 @@
 #include <G4SubtractionSolid.hh>
 #include <G4UnionSolid.hh>
 #include <iostream>
+#include "Random.h"
 
 DetGeometry::DetGeometry() {
-    world_sizeXYZ   = 50 * m;
+    world_sizeXYZ   =  10*m;
     nist            = G4NistManager::Instance();
     world_mat       = nist->FindOrBuildMaterial("G4_AIR");
     solidWorld      = new G4Box("solWorld", 0.5*world_sizeXYZ, 0.5*world_sizeXYZ, 0.5*world_sizeXYZ);
@@ -62,16 +63,16 @@ G4VPhysicalVolume* DetGeometry::Construct(){
     NaI->AddElement(Na, 1);
     NaI->AddElement(I, 1);
 
-    G4Element* Al = nist->FindOrBuildElement(13);
-    G4Element* Mg = nist->FindOrBuildElement(12);
-    G4Element* Fe = nist->FindOrBuildElement(26);
-    G4Element* Si = nist->FindOrBuildElement(14);
-
-    G4Material* AMG = new G4Material("AMG", 2.64*g/cm3, 4, kStateSolid);
-    AMG->AddElement(Al, 0.92);
-    AMG->AddElement(Mg, 0.06);
-    AMG->AddElement(Fe, 0.01);
-    AMG->AddElement(Si, 0.01);
+//    G4Element* Al = nist->FindOrBuildElement(13);
+//    G4Element* Mg = nist->FindOrBuildElement(12);
+//    G4Element* Fe = nist->FindOrBuildElement(26);
+//    G4Element* Si = nist->FindOrBuildElement(14);
+//
+//    G4Material* AMG = new G4Material("AMG", 2.64*g/cm3, 4, kStateSolid);
+//    AMG->AddElement(Al, 0.92);
+//    AMG->AddElement(Mg, 0.06);
+//    AMG->AddElement(Fe, 0.01);
+//    AMG->AddElement(Si, 0.01);
 
 //    auto tubs = new G4Tubs("tubs", 0, 1*m, 2*m, 0, 360*deg);
 //    auto tubs_log = new G4LogicalVolume(tubs, NaI, "tubs");
@@ -83,10 +84,10 @@ G4VPhysicalVolume* DetGeometry::Construct(){
 //    orb_log->SetVisAttributes(G4Colour::Green());
 //    new G4PVPlacement(0, G4ThreeVector(3*m, 0, 0), orb_log, "orb", logicWorld, false, 0);
 
-    auto box = new G4Box("box", 1*m, 1*m, 1*m);
-    auto box_log = new G4LogicalVolume(box, AMG, "box");
+    auto box = new G4Box("box", 10*cm, 10*cm, 10*cm);
+    auto box_log = new G4LogicalVolume(box, nist->FindOrBuildMaterial("G4_SODIUM_IODIDE"), "box");
     box_log->SetVisAttributes(G4Colour::Yellow());
-    new G4PVPlacement(0, G4ThreeVector(0, 0, 0), box_log, "box", logicWorld, false, 0);
+    new G4PVPlacement(0, G4ThreeVector(30*cm, 0, 0), box_log, "box", logicWorld, false, 0);
 
 //    file<<NaI<<"\n";
 //    file<<AMG;
@@ -97,6 +98,15 @@ G4VPhysicalVolume* DetGeometry::Construct(){
 //    file << "Orb surface area " << orb->GetSurfaceArea() / m2 << std::endl;
 //    file << "Box volume " << box->GetCubicVolume() / m3 << std::endl;
 //    file << "Box mass " << box_log->GetMass()/g << std::endl;
+
+    RandomSpectre s(0, 1);
+    std::vector <double> A = s.RandomVariate(-4, 4, 0.01, 10);
+
+    for (auto &x: A) {
+        file << x << ", ";
+    }
+
+    file << "\n" << s.Mean(A) << "\n" << s.Variance(A);
 
     return physWorld;
 }
