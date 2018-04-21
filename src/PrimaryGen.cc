@@ -1,5 +1,6 @@
 
 #include <Randomize.hh>
+#include <G4Neutron.hh>
 #include "PrimaryGen.hh"
 
 PrimaryGen::PrimaryGen() {
@@ -12,24 +13,28 @@ PrimaryGen::~PrimaryGen() {
 }
 
 void PrimaryGen::GeneratePrimaries(G4Event* anEvent) {
-    gun->SetParticleDefinition(G4Gamma::GammaDefinition());
-    gun->SetParticleEnergy(0.662*MeV);
+    gun->SetParticleDefinition(G4Neutron::NeutronDefinition());
+    gun->SetParticleEnergy(0.025 * eV);
 
-    double R = 10*cm, px, py, pz;
+//    double R = 10*cm, px, py, pz;
+//
+//     do {
+//        px = (2*G4UniformRand()-1) * cm;
+//        py = (2*G4UniformRand()-1) * cm;
+//        pz = (2*G4UniformRand()-1) * cm;
+//    } while (sqrt(px*px + py*py + pz*pz) > R);
+//
+//    gun->SetParticlePosition(G4ThreeVector(px,-3*m + py, pz));
 
-     do {
-        px = (2*G4UniformRand()-1) * cm;
-        py = (2*G4UniformRand()-1) * cm;
-        pz = (2*G4UniformRand()-1) * cm;
-    } while (sqrt(px*px + py*py + pz*pz) > R);
-
-    gun->SetParticlePosition(G4ThreeVector(px,-3*m + py, pz));
+    gun->SetParticlePosition(G4ThreeVector(0,0,0));
 
     double x = 2*G4UniformRand()-1;
     double y = 2*G4UniformRand()-1;
     double z = 2*G4UniformRand()-1;
     double r = sqrt(x*x + y*y + z*z);
+
     gun->SetParticleMomentum(G4ThreeVector(x/r, y/r, z/r));
+//    gun->SetParticleMomentum(G4ThreeVector(1, 0, 0));
 
 
     gun->GeneratePrimaryVertex(anEvent);

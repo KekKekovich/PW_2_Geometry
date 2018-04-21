@@ -1,4 +1,5 @@
 
+#include <QGSP_BERT_HP.hh>
 #include "loader.hh"
 
 G4Loader::G4Loader(int argc, char** argv){
@@ -14,7 +15,8 @@ G4Loader::G4Loader(int argc, char** argv){
 //Set mandatory initialization classes
     detGeom = new DetGeometry();
     runManager->SetUserInitialization(detGeom);
-    G4VModularPhysicsList* physicsList = new QBBC;
+//    G4VModularPhysicsList* physicsList = new QBBC;
+    G4VModularPhysicsList* physicsList = new QGSP_BERT_HP;
     runManager->SetUserInitialization(physicsList);
     runManager->SetUserInitialization(new ActionInit());
 

@@ -19,7 +19,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
-add_executable(PW_2_Geometry main.cc ${sources} ${headers})
+add_executable(PW_2_Geometry main.cc ${sources} ${headers} include/StepAction.hh src/StepAction.cc include/RunAction.hh src/RunAction.cc)
 target_link_libraries(PW_2_Geometry ${Geant4_LIBRARIES})
 
 

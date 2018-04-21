@@ -5,13 +5,11 @@
 
 #include "G4UserEventAction.hh"
 #include "G4RunManager.hh"
-#include "Run.hh"
 
-class EventAct : public G4UserEventAction
-{
+class EventAction : public G4UserEventAction {
 public:
-    EventAct();
-    ~EventAct();
+    EventAction();
+    ~EventAction();
     virtual void BeginOfEventAction(const G4Event* event);
     virtual void EndOfEventAction(const G4Event* event);
 private:
