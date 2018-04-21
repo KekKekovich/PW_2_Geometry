@@ -1,5 +1,8 @@
 
 #include "ActionInit.hh"
+#include "EventAction.hh"
+#include "StepAction.hh"
+#include "RunAction.hh"
 
 ActionInit::ActionInit()
 { }
