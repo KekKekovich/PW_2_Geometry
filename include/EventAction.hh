@@ -1,7 +1,7 @@
 
 
-#ifndef CPROJECT_EVENTACT_HH
-#define CPROJECT_EVENTACT_HH
+#ifndef PW_2_GEOMETRY_EVENTACT_HH
+#define PW_2_GEOMETRY_EVENTACT_HH
 
 #include "G4UserEventAction.hh"
 #include "G4RunManager.hh"
@@ -11,8 +11,7 @@ class EventAction : public G4UserEventAction {
 private:
     RunAction *runAction;
 public:
-   EventAction(RunAction *action);
-    ~EventAction();
+   EventAction(RunAction *runAction);
 
     virtual void BeginOfEventAction(const G4Event* event);
     virtual void EndOfEventAction(const G4Event* event);
@@ -21,4 +20,4 @@ private:
 
 };
 
-#endif //CPROJECT_EVENTACT_HH
+#endif //PW_2_GEOMETRY_EVENTACT_HH

@@ -1,10 +1,11 @@
 
 #include <G4String.hh>
-#include "EventAction.hh"
+#include <G4Event.hh>
+#include <G4UserEventAction.hh>
+#include <EventAction.hh>
+#include <RunAction.hh>
 
-EventAction::EventAction(RunAction *action) {
-    runAction = action;
-}
+EventAction::EventAction(RunAction* run) : runAction(run) {}
 
 void EventAction::BeginOfEventAction(const G4Event *event) {
     G4UserEventAction::BeginOfEventAction(event);

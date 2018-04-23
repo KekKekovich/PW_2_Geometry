@@ -8,9 +8,10 @@
 #include <G4UserRunAction.hh>
 
 class RunAction : public G4UserRunAction {
-
+private:
+    G4double score;
 public:
-
+    RunAction(G4double newScoring){score = newScoring;}
     void BeginOfRunAction(const G4Run *aRun) override;
 
     void EndOfRunAction(const G4Run *aRun) override;
