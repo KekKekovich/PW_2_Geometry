@@ -13,7 +13,6 @@ private:
     std::map<G4String, G4double> *result;
 public:
    EventAction(RunAction *runAction);
-    ~EventAction();
 
     virtual void BeginOfEventAction(const G4Event* event);
     virtual void EndOfEventAction(const G4Event* event);

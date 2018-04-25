@@ -7,7 +7,7 @@ G4Loader::G4Loader(int argc, char** argv){
     CLHEP::HepRandom::setTheSeed(time(NULL));
 
 #ifdef G4MULTITHREADED
-    runManager = new G4MTRunManager;
+    runManager = new G4RunManager;
 #else
     runManager = new G4RunManager;
 #endif
@@ -15,8 +15,8 @@ G4Loader::G4Loader(int argc, char** argv){
 //Set mandatory initialization classes
     detGeom = new DetGeometry();
     runManager->SetUserInitialization(detGeom);
-//    G4VModularPhysicsList* physicsList = new QBBC;
-    G4VModularPhysicsList* physicsList = new QGSP_BERT_HP;
+    G4VModularPhysicsList* physicsList = new QBBC;
+//    G4VModularPhysicsList* physicsList = new QGSP_BERT_HP;
     runManager->SetUserInitialization(physicsList);
     runManager->SetUserInitialization(new ActionInit());
 

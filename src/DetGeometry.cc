@@ -72,7 +72,7 @@ G4VPhysicalVolume* DetGeometry::Construct(){
 //    AMG->AddElement(Mg, 0.06);
 //    AMG->AddElement(Fe, 0.01);
 //    AMG->AddElement(Si, 0.01);
-    G4Material* CH = nist->FindOrBuildMaterial("G4_POLYETHYLENE");
+    G4Material* CH = nist->FindOrBuildMaterial("G4_CESIUM_IODIDE");
 
 //    auto tubs = new G4Tubs("tubs", 0, 1*m, 2*m, 0, 360*deg);
 //    auto tubs_log = new G4LogicalVolume(tubs, NaI, "tubs");

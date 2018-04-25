@@ -27,6 +27,7 @@ target_link_libraries(PW_2_Geometry ${Geant4_LIBRARIES})
 set(EXAMPLEB1_SCRIPTS
   init_vis.mac
   vis.mac
+  run.mac
   )
 
 foreach(_script ${EXAMPLEB1_SCRIPTS})

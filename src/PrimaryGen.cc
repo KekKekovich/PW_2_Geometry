@@ -13,8 +13,8 @@ PrimaryGen::~PrimaryGen() {
 }
 
 void PrimaryGen::GeneratePrimaries(G4Event* anEvent) {
-    gun->SetParticleDefinition(G4Neutron::NeutronDefinition());
-    gun->SetParticleEnergy(0.025 * eV);
+    gun->SetParticleDefinition(G4Gamma::GammaDefinition());
+    gun->SetParticleEnergy(662 * keV);
 
 //    double R = 10*cm, px, py, pz;
 //
@@ -33,8 +33,8 @@ void PrimaryGen::GeneratePrimaries(G4Event* anEvent) {
     double z = 2*G4UniformRand()-1;
     double r = sqrt(x*x + y*y + z*z);
 
-    gun->SetParticleMomentum(G4ThreeVector(x/r, y/r, z/r));
-//    gun->SetParticleMomentum(G4ThreeVector(1, 0, 0));
+    gun->SetParticleMomentumDirection(G4ThreeVector(x/r, y/r, z/r));
+//    gun->SetParticleMomentumDirection(G4ThreeVector(1, 0, 0));
 
 
     gun->GeneratePrimaryVertex(anEvent);
