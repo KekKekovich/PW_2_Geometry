@@ -72,7 +72,7 @@ G4VPhysicalVolume* DetGeometry::Construct(){
 //    AMG->AddElement(Mg, 0.06);
 //    AMG->AddElement(Fe, 0.01);
 //    AMG->AddElement(Si, 0.01);
-    G4Material* CH = nist->FindOrBuildMaterial("G4_CESIUM_IODIDE");
+    G4Material* CH = nist->FindOrBuildMaterial("G4_POLYETHYLENE");
 
 //    auto tubs = new G4Tubs("tubs", 0, 1*m, 2*m, 0, 360*deg);
 //    auto tubs_log = new G4LogicalVolume(tubs, NaI, "tubs");
@@ -83,16 +83,30 @@ G4VPhysicalVolume* DetGeometry::Construct(){
 //    auto orb_log = new G4LogicalVolume(orb, NaI, "orb");
 //    orb_log->SetVisAttributes(G4Colour::Green());
 //    new G4PVPlacement(0, G4ThreeVector(3*m, 0, 0), orb_log, "orb", logicWorld, false, 0);
-    double l = 10*cm;
-    auto box = new G4Box("box", l, l, l);
+    //double l = 10*cm;
+    auto box = new G4Box("box", 15, 15, 15);
     auto box_log = new G4LogicalVolume(box, CH, "box");
     box_log->SetVisAttributes(G4Colour::Yellow());
-    new G4PVPlacement(0, G4ThreeVector(-15*cm - l, 0, 0), box_log, "box", logicWorld, false, 0);
+    new G4PVPlacement(0, G4ThreeVector(-10*cm, 0, 0), box_log, "box", logicWorld, false, 0);
 
-    auto box1 = new G4Box("box1", l, l, l);
+    auto box1 = new G4Box("box1", 20, 20, 20);
     auto box1_log = new G4LogicalVolume(box1, CH, "box1");
-    box1_log->SetVisAttributes(G4Colour::Blue());
-    new G4PVPlacement(0, G4ThreeVector(30*cm + l, 0, 0), box1_log, "box1", logicWorld, false, 0);
+    box1_log->SetVisAttributes(G4Colour::Green());
+    new G4PVPlacement(0, G4ThreeVector(+10*cm, 0, 0), box1_log, "box1", logicWorld, false, 0);
+
+    auto box2 = new G4Box("box2", 30, 30, 30);
+    auto box2_log = new G4LogicalVolume(box2, CH, "box2");
+    box2_log->SetVisAttributes(G4Colour::Magenta());
+    new G4PVPlacement(0, G4ThreeVector(0, 0, +10*cm), box2_log, "box2", logicWorld, false, 0);
+
+    auto box3 = new G4Box("box3", 45, 45, 45);
+    auto box3_log = new G4LogicalVolume(box3, CH, "box3");
+    box3_log->SetVisAttributes(G4Colour::Blue());
+    new G4PVPlacement(0, G4ThreeVector(0, 0, -10*cm), box3_log, "box3", logicWorld, false, 0);
+
+
+
+
 //    file<<NaI<<"\n";
 //    file<<AMG;
 //    std::cout << NaI << std::endl;

@@ -6,11 +6,15 @@
 #include "EventAction.hh"
 #include <fstream>
 
+
 void RunAction::BeginOfRunAction(const G4Run *aRun) {
 
     res->clear();
     N1 = 0;
     N2 = 0;
+    N3 = 0;
+    N4 = 0;
+
     int nStep = 20;
     G4double eMax = 1 * MeV;
     for( int i = 0; i < nStep; i++) {
@@ -23,7 +27,7 @@ void RunAction::EndOfRunAction(const G4Run *aRun) {
     for(auto it: *res) {
         file1 << it.first << " | " << it.second << "\n";
     }
-    file1 << "\nbox - " << N1 << "\nbox1 - " << N2 << "\n";
+    file1 << "\nbox - " << N1 << "\nbox1 - " << N2 << "\nbox2 - "<< N3 << "\nbox3 - "<< N4 <<"\n";
     file1.close();
 }
 
@@ -31,6 +35,8 @@ RunAction::RunAction() {
     res = new std::map<G4double, G4int>;
     N1 = 0;
     N2 = 0;
+    N3 = 0;
+    N4 = 0;
 }
 
 RunAction::~RunAction() {
@@ -45,7 +51,9 @@ void RunAction::AddEvent(G4String name, G4double energy) {
         N1++;
     } else if(name == "box1") {
         N2++;
-    }
-}
+    } else if(name == "box2") {
+        N3++;
+}else if(name == "box3" ) {
+        N4++; }}
 
 

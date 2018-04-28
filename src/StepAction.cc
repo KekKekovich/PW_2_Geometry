@@ -10,7 +10,7 @@ StepAction::StepAction(EventAction *event) {
 
 void StepAction::UserSteppingAction(const G4Step *aStep) {
     if (aStep->GetTotalEnergyDeposit() > 0 &&
-        aStep->GetTrack()->GetVolume()->GetLogicalVolume()->GetMaterial()->GetName()=="G4_CESIUM_IODIDE") {
+        aStep->GetTrack()->GetVolume()->GetLogicalVolume()->GetMaterial()->GetName()=="G4_POLYETHYLENE") {
         eventAction->Data(aStep->GetTrack()->GetVolume()->GetName(), aStep->GetTotalEnergyDeposit());
     }
 }

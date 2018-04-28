@@ -25,7 +25,42 @@ void EventAction::EndOfEventAction(const G4Event *event) {
     file.close();
 
     for(auto it: *result) {
-        runAction->AddEvent(it.first, it.second);
+        if((it.second > 0.1) && (it.first == "box")) {
+            runAction->AddEvent(it.first, it.second);
+        } else {
+
+
+        }
+
+    }
+
+    for(auto it: *result) {
+        if((it.second > 0.2) && (it.first == "box1")) {
+            runAction->AddEvent(it.first, it.second);
+        } else {
+
+
+        }
+
+    }
+
+    for(auto it: *result) {
+        if((it.second > 0.5) && (it.first == "box2")) {
+            runAction->AddEvent(it.first, it.second);
+        } else {
+
+
+        }
+
+    }
+    for(auto it: *result) {
+        if((it.second > 1) && (it.first == "box3")) {
+            runAction->AddEvent(it.first, it.second);
+        } else {
+
+
+        }
+
     }
 
     if(result->size()>=0) {

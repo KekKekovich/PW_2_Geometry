@@ -12,7 +12,7 @@
 class RunAction : public G4UserRunAction {
 private:
     std::map<G4double, G4int> *res;
-    G4double N1, N2;
+    G4double N1, N2, N3, N4;
 
 public:
     RunAction();
